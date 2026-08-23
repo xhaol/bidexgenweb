@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BiDexGrasp</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Haoliang Xu">
+    <!-- <meta name="description" content=""> -->
+    <meta name="viewport" content="width=800px, initial-scale=0.8, maximum-scale=2.0, user-scalable=yes">
+    <meta name="google-site-verification" content="ky_GtW3ix1x6MhH-pM6PonkpJCmE-237rRUvxvyQjVs" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/index.css?v=f242881">
+    <link rel="icon" href="./static/image/favicon.png">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <!-- MathJax -->
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>        
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      });
+    </script>
+
+    <!-- visitor statistics -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- model-viewer -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  </head>
+
+
+  <body>
+    <!-- Title -->
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">Towards Bimanual Dexterous Grasp of Partially Observable Objects with Data Synthesis and Diffusion-Based Generation Approach</h1>
+              <div class="is-size-5 publication-authors author-list">
+                <span class="author-block author-name">Haoliang Xu<sup>1,2*</sup>,</span>
+                <span class="author-block author-name">Zexiang Guo<sup>1*</sup>,</span>
+                <span class="author-block author-name">Lipeng Chen<sup>3</sup>,</span>
+                <span class="author-block author-name">Syed Muhammad Nashit Arshad<sup>1</sup>,</span>
+                <span class="author-block author-name">Fei Chen<sup>2</sup>,</span>
+                <span class="author-block author-name">Qiang Li<sup>1</sup></span>
+              </div>
+
+              <div class="is-size-5 publication-authors affiliation-list">
+                <div>
+                  <span class="author-block"><sup>1</sup>Shenzhen Technology University,</span>
+                  <span class="author-block"><sup>2</sup>The Chinese University of Hong Kong,</span>
+                  <span class="author-block"><sup>3</sup>Shanghai Jiaotong University</span>
+                </div>
+                <div class="contribution-note">(* equal contribution)</div>
+
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- PDF Link -->
+                  <span class="link-block">
+                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv (Coming Soon)</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper (Coming Soon)</span>
+                    </a>
+                  </span>
+
+                  <!-- Code Link -->
+                  <span class="link-block">
+                    <a href="https://github.com/xhaol/BiDexGen-Synthesis"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Abstract -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Data-driven bimanual dexterous grasping remains challenging due to the lack of large-scale physically valid datasets and the 
+                difficulty of generating feasible bimanual grasps from partial observations. 
+                We propose an efficient bimanual grasp synthesis pipeline that pairs optimized single-hand grasps and validates the resulting candidates through geometric filtering and physics simulation. 
+                Using this pipeline, we construct BiDexGen-Dataset, a large-scale synthesized bimanual grasp dataset containing millions of physically valid bimanual grasps across 2397 objects. 
+                To bring the synthesized dataset to real-world deployment, we further introduce BiDexGen, a diffusion-based generative model that directly predicts feasible bimanual grasp configurations from partial object point clouds. 
+                To improve robustness under partial perception, we design a contact-aware sampling strategy that aligns training partial observations with the corresponding bimanual grasp annotations based on fingertip contacts and palm approach directions, encouraging BiDexGen to generate grasps on observed object geometry. 
+                Experiments show that our synthesis pipeline outperforms prior bimanual grasp synthesis methods in simulation success rate and generation efficiency. Trained on BiDexGen-Dataset, BiDexGen achieves 68.47% success in simulation and 71.00% on a real dual-arm robotic system.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Abstract -->
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-fullhd overview-section">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full">
+            <h2 class="title is-3 has-text-centered">Bimanual Grasp Dataset</h2>
+            <figure class="overview-figure">
+              <img class="overview-image" src="./static/image/BiDexGen-Dataset.png" alt="Bimanual Grasp Dataset" style="width: 100%; max-width: 900px; height: auto;">
+              <figcaption class="figure-caption">
+                Overview of BiDexGen-Dataset: a large-scale bimanual grasp dataset containing 25 million physically valid ShadowHand grasps across 2,397 objects at four scales, spanning diverse categories and geometries.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Dataset Generation Pipeline -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Bimanual Grasp Data Generation</h2>
+            <figure>
+              <img src="./static/image/Dataset_Generation.png" alt="Bimanual Grasp Data Generation">
+              <figcaption class="figure-caption">
+                Pipeline of bimanual grasp data synthesis: (I) Single-hand generation for left ($\mathcal{G}_l$) and right ($\mathcal{G}_r$) hands through double-layer optimization. (II) Optimized single-hand grasps are paired and filtered to construct initial bimanual candidates $\mathcal{G}_b^{\mathrm{init}}$, followed by simulation validation to obtain the final dataset $\mathbf{G}_b$.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <!--/ Dataset Generation Pipeline -->
+      </div>
+    </section>
+
+    <!-- Simulation Grasps -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column">
+            <h2 class="title is-3 has-text-centered">Bimanual Grasp Dataset</h2>
+          </div>
+        </div>
+
+        <div class="columns is-multiline is-centered has-text-centered">
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/bdg_dataset/cell_phone.glb"
+              alt="Cell Phone Grasp"
+              camera-controls
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Cell Phone</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/bdg_dataset/toaster.glb"
+              alt="Toaster Grasp"
+              camera-controls
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Toaster</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/bdg_dataset/curl_cream.glb"
+              alt="Curl Cream Grasp"
+              camera-controls
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Curl Cream</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/bdg_dataset/drinking_utensil.glb"
+              alt="Drinking Utensil Grasp"
+              camera-controls
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Drinking Utensil</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/bdg_dataset/toilet_paper.glb"
+              alt="Toilet Paper Grasp"
+              camera-controls
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Toilet Paper</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/bdg_dataset/video_game_console.glb"
+              alt="Video Game Console Grasp"
+              camera-controls
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Video Game Console</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Simulation Grasps -->
+    <!-- Training Dataset Visualization -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column">
+            <h2 class="title is-3 has-text-centered">Data for Training BiDexGen (Partial Point Cloud)</h2>
+            <p class="has-text-centered">
+              Each partial point cloud corresponds to the bimanual grasp shown in the same position above.
+            </p>
+          </div>
+        </div>
+
+        <div class="columns is-multiline is-centered has-text-centered">
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              class="training-pc-viewer"
+              src="static/data/training_data/cell_phone_pc.glb"
+              alt="Cell Phone partial point cloud"
+              camera-controls orientation="180deg 0deg 0deg"
+              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
+              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Cell Phone</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              class="training-pc-viewer"
+              src="static/data/training_data/toaster_pc.glb"
+              alt="Toaster partial point cloud"
+              camera-controls orientation="180deg 0deg 0deg"
+              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
+              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Toaster</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              class="training-pc-viewer"
+              src="static/data/training_data/curl_cream_pc.glb"
+              alt="Curl Cream partial point cloud"
+              camera-controls orientation="180deg 0deg 0deg"
+              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
+              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Curl Cream</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              class="training-pc-viewer"
+              src="static/data/training_data/drinking_utensil_pc.glb"
+              alt="Drinking Utensil partial point cloud"
+              camera-controls orientation="180deg 0deg 0deg"
+              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
+              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Drinking Utensil</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              class="training-pc-viewer"
+              src="static/data/training_data/toilet_paper_pc.glb"
+              alt="Toilet Paper partial point cloud"
+              camera-controls orientation="180deg 0deg 0deg"
+              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
+              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Toilet Paper</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              class="training-pc-viewer"
+              src="static/data/training_data/video_game_console_pc.glb"
+              alt="Video Game Console partial point cloud"
+              camera-controls orientation="180deg 0deg 0deg"
+              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
+              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Video Game Console</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Each training GLB is stored in its selected camera frame:
+      // +X image-right, +Y image-down, and +Z optical-forward. The model
+      // orientation above converts it to model-viewer's Y-up convention.
+      async function initializeTrainingViewer(trainingPcViewer) {
+        trainingPcViewer.setAttribute('camera-orbit', '180deg 90deg auto');
+        trainingPcViewer.setAttribute('camera-target', '0m 0m 0m');
+        trainingPcViewer.setAttribute('field-of-view', '60deg');
+        await trainingPcViewer.updateComplete;
+        trainingPcViewer.jumpCameraToGoal();
+
+        // Keep the auto-fitted radius as the zoom reference while allowing a
+        // full top-to-bottom orbit. Start at the farthest allowed distance so
+        // the complete point cloud is visible on initial load.
+        const fittedRadius = trainingPcViewer.getCameraOrbit().radius;
+        const minRadius = Math.max(fittedRadius * 0.7, 0.001);
+        const maxRadius = fittedRadius * 1.8;
+
+        trainingPcViewer.setAttribute(
+          'camera-orbit',
+          `180deg 90deg ${maxRadius}m`
+        );
+        trainingPcViewer.setAttribute(
+          'min-camera-orbit',
+          `auto 0deg ${minRadius}m`
+        );
+        trainingPcViewer.setAttribute(
+          'max-camera-orbit',
+          `auto 180deg ${maxRadius}m`
+        );
+        await trainingPcViewer.updateComplete;
+        trainingPcViewer.jumpCameraToGoal();
+      }
+
+      customElements.whenDefined('model-viewer').then(() => {
+        document.querySelectorAll('.training-pc-viewer').forEach((viewer) => {
+          if (viewer.loaded) {
+            initializeTrainingViewer(viewer);
+          } else {
+            viewer.addEventListener('load', () => {
+              initializeTrainingViewer(viewer);
+            }, { once: true });
+          }
+        });
+      });
+    </script>
+    <!--/ Training Dataset Visualization -->
+
+
+    <section class="section">
+      <div class="container is-fullhd">
+        <!-- Diffusion Structure -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">BiDexGen</h2>
+            <figure style="display: flex; flex-direction: column; align-items: center;">
+              <img src="./static/image/BiDexGen.png" alt="BiDexGen" style="width: 100%; max-width: 1400px;">
+              <figcaption class="figure-caption">
+                Architecture of BiDexGen: Left: BiDexGen iteratively denoises a bimanual grasp from Gaussian noise conditioned on the partial object observation $O$. Right: At timestep $t$, the BPS encoder converts $O$ into object tokens, while the grasp encoder maps the noisy grasp $X_t$ and timestep $t$ into time-conditioned grasp tokens. The attention module applies self-attention to the grasp tokens, cross-attention with the object tokens, and an FFN for feature processing. The noise prediction heads then estimate $\epsilon_\theta(X_t,t,O)$, which is used in the DDPM reverse update to obtain $X_{t-1}$. Repeating this process yields the final bimanual grasp configuration $X_0$.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <!--/ Diffusion Structure -->
+      </div>
+    </section>
+
+
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3 has-text-centered">Real-World Experiments</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-multiline is-centered">
+          <div class="column is-half">
+            <div class="video-carousel-wrapper">
+              <div class="video-card">
+                <video autoplay controls playsinline loop muted preload="metadata" aria-label="Real-world experiment video 1">
+                  <source src="static/data/realworld/1.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="video-carousel-wrapper">
+              <div class="video-card">
+                <video autoplay controls playsinline loop muted preload="metadata" aria-label="Real-world experiment video 2">
+                  <source src="static/data/realworld/2.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="video-carousel-wrapper">
+              <div class="video-card">
+                <video autoplay controls playsinline loop muted preload="metadata" aria-label="Real-world experiment video 3">
+                  <source src="static/data/realworld/3.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="video-carousel-wrapper">
+              <div class="video-card">
+                <video autoplay controls playsinline loop muted preload="metadata" aria-label="Real-world experiment video 4">
+                  <source src="static/data/realworld/4.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="video-carousel-wrapper">
+              <div class="video-card">
+                <video autoplay controls playsinline loop muted preload="metadata" aria-label="Real-world experiment video 5">
+                  <source src="static/data/realworld/5.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="video-carousel-wrapper">
+              <div class="video-card">
+                <video autoplay controls playsinline loop muted preload="metadata" aria-label="Real-world experiment video 6">
+                  <source src="static/data/realworld/6.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="video-carousel-wrapper">
+              <div class="video-card">
+                <video autoplay controls playsinline loop muted preload="metadata" aria-label="Real-world experiment video 7">
+                  <source src="static/data/realworld/7.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-half">
+            <div class="video-carousel-wrapper">
+              <div class="video-card">
+                <video autoplay controls playsinline loop muted preload="metadata" aria-label="Real-world experiment video 8">
+                  <source src="static/data/realworld/8.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    
+
+    <!-- Citation -->
+    <!-- <section class="section" id="Citation">
+      <div class="container is-max-desktop content">
+        <h2 class="title">Citation</h2>
+        <pre><code>@INPROCEEDINGS{wei2024dro,
+    author={Wei, Zhenyu and Xu, Zhixuan and Guo, Jingxiang and Hou, Yiwen and Gao, Chongkai and Cai, Zhehao and Luo, Jiayu and Shao, Lin},
+    booktitle={2025 IEEE International Conference on Robotics and Automation (ICRA)}, 
+    title={$\mathcal{D}(\mathcal{R}, \mathcal{O})$ Grasp: A Unified Representation of Robot and Object Interaction for Cross-Embodiment Dexterous Grasping}, 
+    year={2025},
+    volume={},
+    number={},
+    pages={4982-4988},
+    keywords={Hands;Geometry;Point cloud compression;Adaptation models;Computational modeling;Grasping;Predictive models;Computational efficiency;Robots;Videos},
+    doi={10.1109/ICRA55743.2025.11127754}
+}</code></pre>
+      </div>
+    </section> -->
+    <!--/ Citation -->
+
+    <!-- Footer -->
+    <footer class="footer", style="padding: 40px 0;">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p style="text-align: center;">
+                This website is designed based on
+                <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+                and
+                <a href="https://nus-lins-lab.github.io/drograspweb/">D(R,O) Grasp</a>.
+                <br>
+                For questions, please contact
+                Haoliang Xu at
+                <a href="mailto:harlandhsu@gmail.com">harlandhsu@gmail.com</a>
+                or Zexiang Guo at
+                <a href="mailto:arickguo@gmail.com">arickguo@gmail.com</a>.
+                <br>
+                Thanks for your visiting!
+                <span id="busuanzi_container_site_pv">
+                  Total Page Views: <span id="busuanzi_value_site_pv"></span>
+                </span>
+                <br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--/ Footer -->
+
+  </body>
+</html>
