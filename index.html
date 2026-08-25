@@ -405,7 +405,7 @@
             <figure style="display: flex; flex-direction: column; align-items: center;">
               <img src="./static/image/BiDexGen.png" alt="BiDexGen" style="width: 100%; max-width: 1400px;">
               <figcaption class="figure-caption">
-                Architecture of BiDexGen: Left: BiDexGen iteratively denoises a bimanual grasp from Gaussian noise conditioned on the partial object observation $O$. Right: At timestep $t$, the BPS encoder converts $O$ into object tokens, while the grasp encoder maps the noisy grasp $X_t$ and timestep $t$ into time-conditioned grasp tokens. The attention module applies self-attention to the grasp tokens, cross-attention with the object tokens, and an FFN for feature processing. The noise prediction heads then estimate $\epsilon_\theta(X_t,t,O)$, which is used in the DDPM reverse update to obtain $X_{t-1}$. Repeating this process yields the final bimanual grasp configuration $X_0$.
+                Fig. 3. Architecture of BiDexGen. Left: The iterative reverse diffusion process, which transforms Gaussian noise $X_T^{\mathrm{diff}}$ into a bimanual grasp $X_0$ conditioned on the partial object point cloud $O$. Right: One-step denoising details. The BPS encoder converts $O$ into object tokens $f_O$. The noisy grasp $X_t$ is combined with timestep and position embeddings, encoded, and processed by self-attention and cross-attention with $f_O$. The resulting features are passed through MLPs to predict $\epsilon_\theta(X_t,t,O)$, from which the DDPM update computes $X_{t-1}$.
               </figcaption>
             </figure>
           </div>
@@ -556,7 +556,7 @@
                 <br>
                 For questions, please contact
                 Haoliang Xu at
-                <a href="mailto:harlandhsu@gmail.com">harlandhsu@gmail.com</a>
+                <a href="mailto:haolianghsu@gmail.com">haolianghsu@gmail.com</a>
                 or Zexiang Guo at
                 <a href="mailto:arickguo@gmail.com">arickguo@gmail.com</a>.
                 <br>
