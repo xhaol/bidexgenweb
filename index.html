@@ -403,7 +403,7 @@
           <div class="column is-four-fifths">
             <h2 class="title is-3">BiDexGen</h2>
             <figure style="display: flex; flex-direction: column; align-items: center;">
-              <img src="./static/image/BiDexGen.png" alt="BiDexGen" style="width: 100%; max-width: 1400px;">
+              <img src="./static/image/BiDexGen.png?v=77428a32" alt="BiDexGen" style="width: 100%; max-width: 1400px;">
               <figcaption class="figure-caption">
                 Fig. 3. Architecture of BiDexGen. Left: The iterative reverse diffusion process, which transforms Gaussian noise $X_T^{\mathrm{diff}}$ into a bimanual grasp $X_0$ conditioned on the partial object point cloud $O$. Right: One-step denoising details. The BPS encoder converts $O$ into object tokens $f_O$. The noisy grasp $X_t$ is combined with timestep and position embeddings, encoded, and processed by self-attention and cross-attention with $f_O$. The resulting features are passed through MLPs to predict $\epsilon_\theta(X_t,t,O)$, from which the DDPM update computes $X_{t-1}$.
               </figcaption>
