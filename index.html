@@ -158,7 +158,7 @@
             <figure>
               <img src="./static/image/Dataset_Generation.png" alt="Bimanual Grasp Data Generation">
               <figcaption class="figure-caption">
-                Pipeline of bimanual grasp data synthesis: (I) Single-hand generation for left ($\mathcal{G}_l$) and right ($\mathcal{G}_r$) hands through double-layer optimization. (II) Optimized single-hand grasps are paired and filtered to construct initial bimanual candidates $\mathcal{G}_b^{\mathrm{init}}$, followed by simulation validation to obtain the final dataset $\mathbf{G}_b$.
+                Pipeline of bimanual grasp data synthesis: (I) Single-hand generation for left ($\mathcal{G}_l$) and right ($\mathcal{G}_r$) hands through bilevel optimization. (II) Optimized single-hand grasps are paired and filtered to construct initial bimanual candidates $\mathcal{G}_b^{\mathrm{init}}$, followed by simulation validation to obtain the final dataset $\mathbf{G}_b$.
               </figcaption>
             </figure>
           </div>
@@ -246,156 +246,6 @@
       </div>
     </section>
     <!--/ Simulation Grasps -->
-    <!-- Training Dataset Visualization -->
-    <section class="section">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column">
-            <h2 class="title is-3 has-text-centered">Data for Training BiDexGen (Partial Point Cloud)</h2>
-            <p class="has-text-centered">
-              Each partial point cloud corresponds to the bimanual grasp shown in the same position above.
-            </p>
-          </div>
-        </div>
-
-        <div class="columns is-multiline is-centered has-text-centered">
-          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
-            <model-viewer
-              class="training-pc-viewer"
-              src="static/data/training_data/cell_phone_pc.glb"
-              alt="Cell Phone partial point cloud"
-              camera-controls orientation="180deg 0deg 0deg"
-              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
-              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
-              interaction-prompt-threshold="2000"
-              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
-            </model-viewer>
-            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Cell Phone</p>
-          </div>
-
-          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
-            <model-viewer
-              class="training-pc-viewer"
-              src="static/data/training_data/toaster_pc.glb"
-              alt="Toaster partial point cloud"
-              camera-controls orientation="180deg 0deg 0deg"
-              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
-              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
-              interaction-prompt-threshold="2000"
-              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
-            </model-viewer>
-            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Toaster</p>
-          </div>
-
-          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
-            <model-viewer
-              class="training-pc-viewer"
-              src="static/data/training_data/curl_cream_pc.glb"
-              alt="Curl Cream partial point cloud"
-              camera-controls orientation="180deg 0deg 0deg"
-              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
-              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
-              interaction-prompt-threshold="2000"
-              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
-            </model-viewer>
-            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Curl Cream</p>
-          </div>
-
-          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
-            <model-viewer
-              class="training-pc-viewer"
-              src="static/data/training_data/drinking_utensil_pc.glb"
-              alt="Drinking Utensil partial point cloud"
-              camera-controls orientation="180deg 0deg 0deg"
-              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
-              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
-              interaction-prompt-threshold="2000"
-              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
-            </model-viewer>
-            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Drinking Utensil</p>
-          </div>
-
-          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
-            <model-viewer
-              class="training-pc-viewer"
-              src="static/data/training_data/toilet_paper_pc.glb"
-              alt="Toilet Paper partial point cloud"
-              camera-controls orientation="180deg 0deg 0deg"
-              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
-              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
-              interaction-prompt-threshold="2000"
-              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
-            </model-viewer>
-            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Toilet Paper</p>
-          </div>
-
-          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
-            <model-viewer
-              class="training-pc-viewer"
-              src="static/data/training_data/video_game_console_pc.glb"
-              alt="Video Game Console partial point cloud"
-              camera-controls orientation="180deg 0deg 0deg"
-              camera-orbit="180deg 90deg auto" camera-target="0m 0m 0m"
-              field-of-view="60deg" auto-rotate auto-rotate-delay="1200"
-              interaction-prompt-threshold="2000"
-              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
-            </model-viewer>
-            <p style="font-size: 20px; font-weight: bold; margin-top: 10px;">Video Game Console</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <script>
-      // Each training GLB is stored in its selected camera frame:
-      // +X image-right, +Y image-down, and +Z optical-forward. The model
-      // orientation above converts it to model-viewer's Y-up convention.
-      async function initializeTrainingViewer(trainingPcViewer) {
-        trainingPcViewer.setAttribute('camera-orbit', '180deg 90deg auto');
-        trainingPcViewer.setAttribute('camera-target', '0m 0m 0m');
-        trainingPcViewer.setAttribute('field-of-view', '60deg');
-        await trainingPcViewer.updateComplete;
-        trainingPcViewer.jumpCameraToGoal();
-
-        // Keep the auto-fitted radius as the zoom reference while allowing a
-        // full top-to-bottom orbit. Start at the farthest allowed distance so
-        // the complete point cloud is visible on initial load.
-        const fittedRadius = trainingPcViewer.getCameraOrbit().radius;
-        const minRadius = Math.max(fittedRadius * 0.7, 0.001);
-        const maxRadius = fittedRadius * 1.8;
-
-        trainingPcViewer.setAttribute(
-          'camera-orbit',
-          `180deg 90deg ${maxRadius}m`
-        );
-        trainingPcViewer.setAttribute(
-          'min-camera-orbit',
-          `auto 0deg ${minRadius}m`
-        );
-        trainingPcViewer.setAttribute(
-          'max-camera-orbit',
-          `auto 180deg ${maxRadius}m`
-        );
-        await trainingPcViewer.updateComplete;
-        trainingPcViewer.jumpCameraToGoal();
-      }
-
-      customElements.whenDefined('model-viewer').then(() => {
-        document.querySelectorAll('.training-pc-viewer').forEach((viewer) => {
-          if (viewer.loaded) {
-            initializeTrainingViewer(viewer);
-          } else {
-            viewer.addEventListener('load', () => {
-              initializeTrainingViewer(viewer);
-            }, { once: true });
-          }
-        });
-      });
-    </script>
-    <!--/ Training Dataset Visualization -->
-
-
     <section class="section">
       <div class="container is-fullhd">
         <!-- Diffusion Structure -->
@@ -413,6 +263,98 @@
         <!--/ Diffusion Structure -->
       </div>
     </section>
+
+    <!-- Inference Results -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column">
+            <h2 class="title is-3 has-text-centered">Bimanual Grasps Generated by BiDexGen</h2>
+          </div>
+        </div>
+
+        <div class="columns is-multiline is-centered has-text-centered">
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/inference_data/core_bottle_6ab0ef1973477031ad5067eac75a07f7_scale018_inference.glb"
+              alt="Bottle inference result"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Bottle</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/inference_data/ddg_gd_box_poisson_019_scale024_inference.glb"
+              alt="Box inference result"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Box</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/inference_data/mujoco_Frozen_Olafs_In_Trouble_PopOMatic_Game_scale036_inference.glb"
+              alt="Pop-O-Matic game inference result"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Pop-O-Matic Game</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/inference_data/mujoco_Office_Depot_Dell_Series_1_Remanufactured_Ink_Cartridge_Black_scale036_inference.glb"
+              alt="Dell ink cartridge inference result"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Dell Ink Cartridge</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/inference_data/mujoco_Office_Depot_HP_71_Remanufactured_Ink_Cartridge_Black_scale030_inference.glb"
+              alt="HP 71 ink cartridge inference result"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">HP 71 Ink Cartridge</p>
+          </div>
+
+          <div class="column is-one-third" style="display: flex; flex-direction: column; align-items: center;">
+            <model-viewer
+              src="static/data/inference_data/mujoco_Ortho_Forward_Facing_CkAW6rL25xH_scale024_inference.glb"
+              alt="Ortho product inference result"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="1200"
+              interaction-prompt-threshold="2000"
+              style="width: 220px; height: 220px; border: 3px solid #66c0ff; border-radius: 15px;">
+            </model-viewer>
+            <p style="font-size: 18px; font-weight: 600; margin-top: 10px;">Ortho Product</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--/ Inference Results -->
 
 
 
